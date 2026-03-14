@@ -21,28 +21,9 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from '../services/FirebaseConfig';
 
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { useNavigate } from 'react-router';
 
 let timer
-const testFirestore = async () => {
-  console.log("Button clicked");
-
-  try {
-
-    console.log("Trying to write to Firestore...");
-
-    await setDoc(doc(db, "test", "hello"), {
-      message: "firebase working"
-    });
-
-    console.log("Firestore write successful");
-
-  } catch (error) {
-
-    console.error("Firestore test failed:", error);
-
-  }
-};
-
 
 function CreateTrip() {
 
@@ -51,6 +32,8 @@ function CreateTrip() {
   const [loading, setLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
+
+  const navigate = useNavigate()
 
   // =========================
   // Handle input change
@@ -99,6 +82,8 @@ function CreateTrip() {
       console.log("Trip saved successfully!")
 
       toast("Trip saved successfully!")
+
+      navigate('/view-trip/' + docId)
 
     } catch (error) {
 
@@ -210,8 +195,6 @@ function CreateTrip() {
       setLoading(true)
 
       const result = await runGemini(FINAL_PROMPT)
-
-      // console.log("Gemini Raw Result:", result)
 
       if (!result) {
 
@@ -422,9 +405,7 @@ function CreateTrip() {
           }
 
         </Button>
-        <Button onClick={testFirestore}>
-  Test Firestore
-</Button>
+
       </div>
 
 
