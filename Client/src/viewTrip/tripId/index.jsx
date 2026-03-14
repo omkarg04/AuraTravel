@@ -4,6 +4,12 @@ import { db } from '../../services/FirebaseConfig'
 import { useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import InfoSection from '../../components/InfoSection'
+import Hotels from '../../components/Hotels'
+import PlacestoVisit from '../../components/PlacestoVisit'
+import Footer from '../../components/Footer'
+
+
+
 
 function ViewTrip() {
 
@@ -51,12 +57,15 @@ function ViewTrip() {
       {trip && <InfoSection trip={trip} />}
 
       {/* Recommended hotels section */}
+      {trip && <Hotels trip={trip} />}
 
       {/* Daily plan */}
+      <PlacestoVisit trip={trip} />
 
       {/* Footer */}
+      <Footer trip={trip}/>
 
-    </div>
+    </div> 
   )
 }
 
