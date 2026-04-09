@@ -175,7 +175,7 @@ function CreateTrip() {
 
     }
 
-    if (formData?.noOfDays > 5 || !formData?.location || !formData?.budget || !formData?.traveler) {
+    if (formData?.noOfDays > 10 || !formData?.location || !formData?.budget || !formData?.traveler) {
 
       toast("Please enter details properly")
       return
@@ -412,7 +412,7 @@ function CreateTrip() {
 
       {/* Login Dialog */}
 
-      <Dialog open={openDialog}>
+      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
 
         <DialogContent>
 
